@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.ska23.slicesapplication">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <meta-data
+                android:name="android.metadata.SLICE_URI"
+                android:value="content/com.example.com/test"/>
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="com.ecample.ska23.slicesapplication"
+                    android:pathPrefix="/test"
+                    android:scheme="test-test" />
+            </intent-filter>
+        </activity>
+
+        <provider
+            android:name=".SliceProvider"
+            android:authorities="com.example.ska23.slicesapplication"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.app.slice.category.SLICE" />
+
+                <data
+                    android:host="com.example.ska23.slicesapplication"
+                    android:pathPrefix="/"
+                    android:scheme="http" />
+            </intent-filter>
+        </provider>
+    </application>
+
+</manifest>
